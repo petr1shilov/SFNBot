@@ -1,0 +1,7 @@
+transformers==4.51.3
+sentence-transformers==4.1.0
+selenium==4.27.1
+nltk==3.9.1
+requests==2.32.3
+chromadb==1.0.8
+tqdm==4.67.1
