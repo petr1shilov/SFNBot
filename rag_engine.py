@@ -35,11 +35,16 @@ def get_bot_answer(base_model: BaseModel, query: str):
         distances = db_results.get("distances", [[]])[0]
         chunks = []
 
+        # for idx, distanse in enumerate(distances):
+        #     if distanse <= base_model.faq_threshold and metadatas[idx].get('section') == 'FAQ':
+        #         if idx == 0:
+        #             return metadatas[idx].get('faq_answer')
+        #     elif metadatas[idx].get('section') != 'FAQ' and distanse <= base_model.rag_threshold:
+        #             chunks.append(metadatas[idx].get('faq_answer'))
+
         for idx, distanse in enumerate(distances):
-            if distanse <= base_model.faq_threshold and metadatas[idx].get('section') == 'FAQ':
-                if idx == 0:
-                    return metadatas[idx].get('faq_answer')
-            elif metadatas[idx].get('section') != 'FAQ' and distanse <= base_model.rag_threshold:
+            print(metadatas[idx])
+            if distanse <= base_model.faq_threshold:
                     chunks.append(metadatas[idx].get('faq_answer'))
 
         chunks = '\n'.join(chunks)

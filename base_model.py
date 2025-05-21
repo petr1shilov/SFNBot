@@ -19,7 +19,7 @@ class BaseModel:
         self,
         api_key: str,
         model: str = 'giga',
-        faq_threshold: float = 0.24,
+        faq_threshold: float = 0.34,
         rag_threshold: float = 0.34,
         temperature: float = 0.8,
         top_k: int = 3,
