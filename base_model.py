@@ -21,7 +21,11 @@ class BaseModel:
         model: str = 'giga',
         faq_threshold: float = 0.34,
         rag_threshold: float = 0.34,
+<<<<<<< HEAD
         temperature: float = 0.4,
+=======
+        temperature: float = 0.8,
+>>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
         top_k: int = 3,
         embedder: str = 'intfloat/e5-base-v2'
     ):

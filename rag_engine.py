@@ -31,8 +31,11 @@ def get_bot_answer(base_model: BaseModel, query: str):
 
         db_results = client_db.query(query)
 
+<<<<<<< HEAD
         rag_engin_logger.info(f'db_results: {db_results}')
 
+=======
+>>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
         metadatas = db_results.get("metadatas", [[]])[0]
         distances = db_results.get("distances", [[]])[0]
         chunks = []
