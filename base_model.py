@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModel
 from sentence_transformers import SentenceTransformer
+from langchain_community.embeddings import HuggingFaceEmbeddings
 import logging
 
 base_model_logger = logging.getLogger('base_model_logger')
@@ -21,13 +22,9 @@ class BaseModel:
         model: str = 'giga',
         faq_threshold: float = 0.34,
         rag_threshold: float = 0.34,
-<<<<<<< HEAD
         temperature: float = 0.4,
-=======
-        temperature: float = 0.8,
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
         top_k: int = 3,
-        embedder: str = 'intfloat/e5-base-v2'
+        embedder: str = './models/e5-base-v2'
     ):
         self.api_key = api_key
         self.model = model
@@ -58,8 +55,10 @@ class BaseModel:
     def _load_embedder(self):
         base_model_logger.info(f"Загружаю эмбеддер: {self.embedder}")
         try:
-            model = SentenceTransformer(self.embedder)
-            return model
+            return HuggingFaceEmbeddings(
+                model_name=self.embedder,
+                encode_kwargs={"normalize_embeddings": True},
+            )
         except Exception as e:
             base_model_logger.info(f"Не удалось загрузить эмбеддер: {e}")
             return None

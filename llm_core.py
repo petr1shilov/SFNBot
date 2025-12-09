@@ -89,16 +89,11 @@ class ChatLLM:
         # Подготовка данных запроса в формате JSON
         payload = json.dumps(
             {
-<<<<<<< HEAD
                 "model": "GigaChat-Max",  # Используемая модель
-=======
-                "model": "GigaChat-Pro",  # Используемая модель
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
                 "messages": [
                     {
                         "role": "system",
                         "content": (
-<<<<<<< HEAD
                                     "Ты — дружелюбный и профессиональный помощник компании ООО «СФН».\n"
                                     "Помогаешь начинающим пайщикам разбираться: паевые инвестиции, ПИФ/ЗПИФ, фонды, недвижимость фонда,\n"
                                     "операции с паями, биржа/брокеры, комиссии, налоги (НДФЛ), доходность и риски, порядок работы фондов.\n"
@@ -146,16 +141,6 @@ class ChatLLM:
                                     "Если в данных есть контакт/ссылка — укажи его; иначе предложи уточнить запрос.\n"
                                 ),
                         },
-=======
-                                        "Ты бот помощьник комнапии ООО «СФН»\n"
-                                        "Будь приветлив и дружелюбен"
-                                        "Твоя задача коротко и четко отвечать на вопросы пользователя основываясь на информации ниже:\n"
-                                        f"{chunks}\n"
-                                        "Не пиши информацию не относящуюся к вопросу пользователя\n"
-                                        "Отвечай только по факту на заданный вопрос от пользователя"
-                                        "Ответ должен быть примерно 20 слов."
-                                    )},
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
                     {
                         "role": "user",  # Роль отправителя (пользователь)
                         "content": user_message,  # Содержание сообщения
@@ -189,7 +174,7 @@ class ChatLLM:
             llm_core_logger.info(f"Произошла ошибка: {str(e)}")
             return -1
 
-<<<<<<< HEAD
+
     def get_json_answer_giga(self, answer):
         try:
             obj = json.loads(answer)
@@ -201,8 +186,6 @@ class ChatLLM:
         except Exception as e:
             print(e)
 
-=======
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
     def _generate_gigachat(self, query: str, chunks: str) -> str:
         response = self.get_token()
         if response != -1:
@@ -211,11 +194,11 @@ class ChatLLM:
         llm_response = str(
                     answer.json()["choices"][0]["message"]["content"]
                 )
-<<<<<<< HEAD
+        response_tokens = str(
+                    answer.json()["usage"]["total_tokens"]
+                )
         # llm_response = self.get_json_answer_giga(llm_response)
-=======
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
-        return llm_response
+        return llm_response, response_tokens
 
     def _generate_local(self):
         tokenizer = self.tokenizer
