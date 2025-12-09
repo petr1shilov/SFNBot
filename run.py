@@ -70,17 +70,9 @@ async def command_start_handler(message: Message, state: FSMContext) -> None:
     await state.update_data(faq_threshold=base_model.faq_threshold, top_k=base_model.top_k)
     await message.answer(hello_message_text)
 
-
-<<<<<<< HEAD
 # @dp.message(Command('bot_settings'))
 # async def change_settings(message: Message, state: FSMContext):
 #     await message.answer('Меню настроек бота', reply_markup=get_keyboard('settings_kb'))
-=======
-@dp.message(Command('bot_settings'))
-async def change_settings(message: Message, state: FSMContext):
-    await message.answer('Меню настроек бота', reply_markup=get_keyboard('settings_kb'))
->>>>>>> 0df95b76a3a0a30f0a5f2c72e110bb6cc0e9b907
-
 
 @dp.callback_query(F.data == button_faq_threshold)
 async def chage_faq_threshold(callback: CallbackQuery, state: FSMContext):
